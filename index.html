@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Guess the number!</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">Guess a number between 1 and 20!</div>
+
+      <div class="box">
+        <div class="left-side">
+          <h2><u>ANDREW'S BOX</u></h2>
+          <p class="left-message">Andrew, enter your guess:</p>
+          <input type="number" class="left-guess"></input>
+          <button class="check-left">Check Number</button>
+          <p class="left-guesses-remaining">Guesses remaining: <span id="left-guesses-remaining">10</span>/10</p>
+          <p class="highest-score">Highest score:<span class="left-highest-score"> 0</span></p>
+        </div>
+        <div class="secret-number">?</div>
+        <div class="play-again">Play Again</div>
+        <div class="right-side">
+          <h2><u>VICTORIA'S BOX</u></h2>
+          <p class="right-message">Victoria, enter your guess:</p>
+          <input type="number" class="right-guess"></input>
+          <button class="check-right">Check Number</button>
+          <p class="right-guesses-remaining">Guesses remaining: <span id="right-guesses-remaining">10</span>/10</p>
+          <p class="highest-score">Highest score:<span class="right-highest-score"> 0</span></p>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
