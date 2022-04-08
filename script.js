@@ -26,7 +26,7 @@ const rightHighestScore = document.querySelector(".right-highest-score");
 
 //Create secret number
 let secNumber = Math.floor(Math.random() * 20 + 1);
-secretNumber.textContent = secNumber;
+// secretNumber.textContent = secNumber;
 
 //Initial high scores
 let highestScoreAndrew = 0;
@@ -68,29 +68,43 @@ function enableSide(sideSide, sideGuess, sideBtn) {
   sideGuess.value = "";
 }
 
+function enableSides(sideSide, sideGuess, sideBtn) {
+  sideSide.style.backgroundColor = "#8fc28e"; //light green
+  sideGuess.style.backgroundColor = "#efe8e8"; //light gray
+  sideGuess.disabled = false;
+  sideBtn.disabled = false;
+  sideGuess.value = "";
+}
 
-
-//EVENT LISTENERS
-
-//Play Again Button
-playAgainBtn.addEventListener("click", () => {
-  enableSide(leftSide, leftGuess, leftBtn);
-  enableSide(rightSide, rightGuess, rightBtn);
+function playAgain() {
   secNumber = Math.floor(Math.random() * 20 + 1);
-  secretNumber.textContent = secNumber;
+  // secretNumber.textContent = secNumber;
+  secretNumber.textContent = "?"
   andrewGuesses = 10;
   leftGuessesRemaining.textContent = andrewGuesses;
   victoriaGuesses = 10;
   rightGuessesRemaining.textContent = victoriaGuesses;
   leftMessage.textContent = "Andrew, enter your guess:";
   rightMessage.textContent = "Victoria, enter your guess:";
+  enableSides(leftSide, leftGuess, leftBtn);
+  enableSides(rightSide, rightGuess, rightBtn);
+}
+
+
+
+//EVENT LISTENERS
+
+//Play Again Button
+playAgainBtn.addEventListener("click", () => {
+  playAgain()
 })
 
-//Delete all content when input is clicked
+//Delete input field content when clicked into
 leftGuess.addEventListener("click", () => {
   leftGuess.value = "";
 });
 
+//Delete input field content when clicked into
 rightGuess.addEventListener("click", () => {
   rightGuess.value = "";
 });
@@ -116,10 +130,12 @@ leftBtn.addEventListener("click", () => {
     disableSide(leftSide, leftGuess, leftBtn);
     enableSide(rightSide, rightGuess, rightBtn);
   } else {
-    leftMessage.textContent = "Congrats, you win!!! 👏🎉🍾😀";
+    leftMessage.textContent = "Congrats Andrew, you win!!! 👏😀";
     leftSide.style.backgroundColor = "#cfc948"; //yellow
     leftGuess.disabled = true;
     secretNumber.textContent = secNumber;
+    leftHighestScore.textContent = andrewGuesses;
+    console.log(andrewGuesses)
   }
 
   if(andrewGuesses == 0) {
@@ -149,14 +165,12 @@ rightBtn.addEventListener("click", () => {
     disableSide(rightSide, rightGuess, rightBtn);
     enableSide(leftSide, leftGuess, leftBtn);
   } else {
-    rightMessage.textContent = "Congrats, you win!!! 👏🎉🍾😀";
+    rightMessage.textContent = "Congrats Victoria, you win!!! 👏😀";
     rightSide.style.backgroundColor = "#cfc948"; //yellow
     rightGuess.disabled = true;
     secretNumber.textContent = secNumber;
-    // console.log(andrewGuesses, highestScoreAndrew)
-    rightHighestScore.textContent = highestScoreAndrew;
-    // andrewGuesses > highestScoreAndrew && rightHighestScore.textContent = highestScoreAndrew 
-  }
+    rightHighestScore.textContent = victoriaGuesses;
+    console.log(victoriaGuesses)  }
 
   if(victoriaGuesses == 0) {
     disableSide(rightSide, rightGuess, rightBtn);
