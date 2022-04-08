@@ -22,7 +22,20 @@ const rightHighestScore = document.querySelector(".right-highest-score");
 // ==============================================================================
 
 
+//GLOBAL VARIABLES
 
+//Create secret number
+let secNumber = Math.floor(Math.random() * 20 + 1);
+secretNumber.textContent = secNumber;
+
+//Initial high scores
+let highestScoreAndrew = 0;
+let highestSCoreVictoria = 0;
+
+
+//Initial guesses
+let andrewGuesses = 10;
+let victoriaGuesses = 10;
 
 //FUNCTIONS
 function gameOver() {
@@ -61,7 +74,16 @@ function enableSide(sideSide, sideGuess, sideBtn) {
 
 //Play Again Button
 playAgainBtn.addEventListener("click", () => {
-  location.reload();
+  enableSide(leftSide, leftGuess, leftBtn);
+  enableSide(rightSide, rightGuess, rightBtn);
+  secNumber = Math.floor(Math.random() * 20 + 1);
+  secretNumber.textContent = secNumber;
+  andrewGuesses = 10;
+  leftGuessesRemaining.textContent = andrewGuesses;
+  victoriaGuesses = 10;
+  rightGuessesRemaining.textContent = victoriaGuesses;
+  leftMessage.textContent = "Andrew, enter your guess:";
+  rightMessage.textContent = "Victoria, enter your guess:";
 })
 
 //Delete all content when input is clicked
@@ -72,23 +94,6 @@ leftGuess.addEventListener("click", () => {
 rightGuess.addEventListener("click", () => {
   rightGuess.value = "";
 });
-
-
-
-//INITIAL VARIABLES
-
-//Create secret number
-const secNumber = Math.floor(Math.random() * 20 + 1);
-secretNumber.textContent = secNumber;
-
-//Initial high scores
-let highestScoreAndrew = 0;
-let highestSCoreVictoria = 0;
-
-
-//Initial guesses
-let andrewGuesses = 10;
-let victoriaGuesses = 10;
 
 
 
@@ -112,6 +117,7 @@ leftBtn.addEventListener("click", () => {
     enableSide(rightSide, rightGuess, rightBtn);
   } else {
     leftMessage.textContent = "Congrats, you win!!! 👏🎉🍾😀";
+    leftSide.style.backgroundColor = "#cfc948"; //yellow
     leftGuess.disabled = true;
     secretNumber.textContent = secNumber;
   }
@@ -144,6 +150,7 @@ rightBtn.addEventListener("click", () => {
     enableSide(leftSide, leftGuess, leftBtn);
   } else {
     rightMessage.textContent = "Congrats, you win!!! 👏🎉🍾😀";
+    rightSide.style.backgroundColor = "#cfc948"; //yellow
     rightGuess.disabled = true;
     secretNumber.textContent = secNumber;
     // console.log(andrewGuesses, highestScoreAndrew)

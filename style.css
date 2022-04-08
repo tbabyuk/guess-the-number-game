@@ -151,8 +151,8 @@ button:hover {
   margin-bottom: 50px;
   background-color: #6887e6;
   color: rgb(239, 232, 232);
-}
-
-.check-left:active, .check-right:active {
-  background-color: hsl(225, 72%, 45%);
 } */
+
+/* .check-left:active, .check-right:active {
+  background-color: #cfc948;
+}  */
