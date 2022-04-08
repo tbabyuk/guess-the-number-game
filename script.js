@@ -1,9 +1,19 @@
-//Get DOM Elements
+//DOM ELEMENTS
 const secretNumber = document.querySelector(".secret-number");
-const leftGuess = document.querySelector(".left-guess");
-const rightGuess = document.querySelector(".right-guess");
 const leftSide = document.querySelector(".left-side");
 const rightSide = document.querySelector(".right-side");
+
+//Input Elements
+const leftGuess = document.querySelector(".left-guess");
+const rightGuess = document.querySelector(".right-guess");
+
+//Output Elements
+const leftMessage = document.querySelector(".left-message");
+const rightMessage = document.querySelector(".right-message");
+const leftGuessesRemaining = document.getElementById("left-guesses-remaining");
+const rightGuessesRemaining = document.getElementById("right-guesses-remaining");
+const leftHighestScore = document.querySelector(".left-highest-score");
+const rightHighestScore = document.querySelector(".right-highest-score");
 
 //Buttons
 const leftBtn = document.querySelector(".check-left");
@@ -11,14 +21,6 @@ const rightBtn = document.querySelector(".check-right");
 const playAgainBtn = document.querySelector(".play-again");
 const resetHighestLeftBtn = document.querySelector(".reset-highest-left-btn");
 const resetHighestRightBtn = document.querySelector(".reset-highest-right-btn");
-
-//Output elements
-const leftMessage = document.querySelector(".left-message");
-const rightMessage = document.querySelector(".right-message");
-const leftGuessesRemaining = document.getElementById("left-guesses-remaining");
-const rightGuessesRemaining = document.getElementById("right-guesses-remaining");
-const leftHighestScore = document.querySelector(".left-highest-score");
-const rightHighestScore = document.querySelector(".right-highest-score");
 
 
 // ==============================================================================
@@ -30,14 +32,13 @@ const rightHighestScore = document.querySelector(".right-highest-score");
 let secNumber = Math.floor(Math.random() * 20 + 1);
 // secretNumber.textContent = secNumber;
 
-//Initial high scores
-let highestScoreAndrew = 0;
-let highestScoreVictoria = 0;
-
-
 //Initial guesses
 let andrewGuesses = 10;
 let victoriaGuesses = 10;
+
+//Initial high scores
+let highestScoreAndrew = 0;
+let highestScoreVictoria = 0;
 
 //FUNCTIONS
 function gameOver() {
@@ -54,12 +55,6 @@ function gameOver() {
   rightMessage.textContent = "Game over. Nobody wins. 😞 Play Again?"
 }
 
-function disableSide(sideSide, sideGuess, sideBtn) {
-  sideSide.style.backgroundColor = "#3c6d3b"; //dark green
-  sideGuess.style.backgroundColor = "#7f7676"; //dark gray
-  sideGuess.disabled = true;
-  sideBtn.disabled = true;
-}
 
 function enableLeftSide() {
   leftSide.style.backgroundColor = "#8fc28e"; //light green
@@ -69,7 +64,6 @@ function enableLeftSide() {
   leftGuess.focus();
   leftGuess.value = "";
   leftMessage.textContent = "Andrew, enter your guess:";
-
 }
 
 function enableRightSide() {
@@ -80,7 +74,13 @@ function enableRightSide() {
   rightGuess.focus();
   rightGuess.value = "";
   rightMessage.textContent = "Victoria, enter your guess:";
+}
 
+function disableSide(sideSide, sideGuess, sideBtn) {
+  sideSide.style.backgroundColor = "#3c6d3b"; //dark green
+  sideGuess.style.backgroundColor = "#7f7676"; //dark gray
+  sideGuess.disabled = true;
+  sideBtn.disabled = true;
 }
 
 // function enableSide(sideSide, sideGuess, sideBtn, sideMessage) {
@@ -102,8 +102,8 @@ function enableSides(sideSide, sideGuess, sideBtn) {
 
 function playAgain() {
   secNumber = Math.floor(Math.random() * 20 + 1);
-  secretNumber.textContent = secNumber;
-  // secretNumber.textContent = "?"
+  // secretNumber.textContent = secNumber;
+  secretNumber.textContent = "?"
   andrewGuesses = 10;
   leftGuessesRemaining.textContent = andrewGuesses;
   victoriaGuesses = 10;
@@ -128,11 +128,11 @@ leftGuess.addEventListener("click", () => {
   leftGuess.value = "";
 });
 
-//Delete input field content when clicked into
 rightGuess.addEventListener("click", () => {
   rightGuess.value = "";
 });
 
+//Reset highest score field
 resetHighestLeftBtn.addEventListener("click", () => {
   highestScoreAndrew = 0;
   leftHighestScore.textContent = highestScoreAndrew;
@@ -146,6 +146,8 @@ resetHighestRightBtn.addEventListener("click", () => {
 
 
 //GAME LOGIC
+
+//Left Side
 leftBtn.addEventListener("click", () => {
 
   if (!leftGuess.value) {
@@ -156,13 +158,13 @@ leftBtn.addEventListener("click", () => {
     andrewGuesses -= 1;
     leftGuessesRemaining.textContent = andrewGuesses;
     disableSide(leftSide, leftGuess, leftBtn);
-    enableRightSide(rightSide, rightGuess, rightBtn, rightMessage);
+    enableRightSide();
   } else if (leftGuess.value < secNumber) {
     leftMessage.textContent = "Ooops, go higher. Victoria's turn!";
     andrewGuesses -= 1;
     leftGuessesRemaining.textContent = andrewGuesses;
     disableSide(leftSide, leftGuess, leftBtn);
-    enableRightSide(rightSide, rightGuess, rightBtn, rightMessage);
+    enableRightSide();
   } else {
     leftMessage.textContent = "Congrats Andrew, you win!!! 👏😀";
     leftSide.style.backgroundColor = "#cfc948"; //yellow
@@ -184,6 +186,7 @@ leftBtn.addEventListener("click", () => {
   }
 });
 
+//Right Side
 rightBtn.addEventListener("click", () => {
   if(!rightGuess.value) {
     rightMessage.textContent = "Please enter your guess!";
@@ -193,13 +196,13 @@ rightBtn.addEventListener("click", () => {
     victoriaGuesses -= 1;
     rightGuessesRemaining.textContent = victoriaGuesses;
     disableSide(rightSide, rightGuess, rightBtn);
-    enableLeftSide(leftSide, leftGuess, leftBtn, leftMessage);
+    enableLeftSide();
   } else if (rightGuess.value < secNumber) {
     rightMessage.textContent = "Ooops, go higher. Andrew's turn!";
     victoriaGuesses -= 1;
     rightGuessesRemaining.textContent = victoriaGuesses;
     disableSide(rightSide, rightGuess, rightBtn);
-    enableLeftSide(leftSide, leftGuess, leftBtn, leftMessage);
+    enableLeftSide();
   } else {
     rightMessage.textContent = "Congrats Victoria, you win!!! 👏😀";
     rightSide.style.backgroundColor = "#cfc948"; //yellow
