@@ -1,4 +1,4 @@
-//DOM ELEMENTS
+//SELECT DOM ELEMENTS
 const secretNumber = document.querySelector(".secret-number");
 const leftSide = document.querySelector(".left-side");
 const rightSide = document.querySelector(".right-side");
@@ -26,9 +26,9 @@ const resetHighestRightBtn = document.querySelector(".reset-highest-right-btn");
 // ==============================================================================
 
 
-//GLOBAL VARIABLES
+//GLOBAL VARIABLES ||
 
-//Create secret number
+//Create secret number between 1 and 20
 let secNumber = Math.floor(Math.random() * 20 + 1);
 // secretNumber.textContent = secNumber;
 
@@ -40,7 +40,8 @@ let victoriaGuesses = 10;
 let highestScoreAndrew = 0;
 let highestScoreVictoria = 0;
 
-//FUNCTIONS
+
+//FUNCTIONS ||
 function gameOver() {
   rightMessage.textContent = "Sorry Victoria, you're out of guesses!";
   rightBtn.disabled = true;
@@ -54,7 +55,6 @@ function gameOver() {
   leftMessage.textContent = "Game over. Nobody wins. 😞 Play Again?"
   rightMessage.textContent = "Game over. Nobody wins. 😞 Play Again?"
 }
-
 
 function enableLeftSide() {
   leftSide.style.backgroundColor = "#8fc28e"; //light green
@@ -83,15 +83,6 @@ function disableSide(sideSide, sideGuess, sideBtn) {
   sideBtn.disabled = true;
 }
 
-// function enableSide(sideSide, sideGuess, sideBtn, sideMessage) {
-//   sideSide.style.backgroundColor = "#8fc28e"; //light green
-//   sideGuess.style.backgroundColor = "#efe8e8"; //light gray
-//   sideGuess.disabled = false;
-//   sideBtn.disabled = false;
-//   sideGuess.focus();
-//   sideGuess.value = "";
-// }
-
 function enableSides(sideSide, sideGuess, sideBtn) {
   sideSide.style.backgroundColor = "#8fc28e"; //light green
   sideGuess.style.backgroundColor = "#efe8e8"; //light gray
@@ -116,7 +107,7 @@ function playAgain() {
 
 
 
-//EVENT LISTENERS
+//EVENT LISTENERS ||
 
 //Play Again Button
 playAgainBtn.addEventListener("click", () => {
@@ -145,7 +136,7 @@ resetHighestRightBtn.addEventListener("click", () => {
 
 
 
-//GAME LOGIC
+//GAME LOGIC ||
 
 //Left Side
 leftBtn.addEventListener("click", () => {
